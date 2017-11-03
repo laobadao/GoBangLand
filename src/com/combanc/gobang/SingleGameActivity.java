@@ -48,9 +48,7 @@ public class SingleGameActivity extends Activity implements OnClickListener{
     // Control Button
     private Button restart;
     private Button rollback;
-    private Button setting;
-    private Button about;
-    
+
     private boolean isRollback;
     
     /**
@@ -95,7 +93,7 @@ public class SingleGameActivity extends Activity implements OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_single);
+        setContentView(R.layout.single_game_activity);
         initViews();
         initGame();
         initComputer();
@@ -119,12 +117,8 @@ public class SingleGameActivity extends Activity implements OnClickListener{
         mWhiteActive = (ImageView) findViewById(R.id.white_active);
         restart = (Button) findViewById(R.id.restart);
         rollback = (Button) findViewById(R.id.rollback);
-        setting = (Button) findViewById(R.id.setting);
-        about = (Button) findViewById(R.id.about);
         restart.setOnClickListener(this);
         rollback.setOnClickListener(this);
-        setting.setOnClickListener(this);
-        about.setOnClickListener(this);
     }
     
     private void initGame(){
@@ -202,12 +196,6 @@ public class SingleGameActivity extends Activity implements OnClickListener{
             } else {
                 rollback();
             }
-            break;
-        case R.id.about:
-            
-            break;
-        case R.id.setting:
-
             break;
         default:
             break;

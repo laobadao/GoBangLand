@@ -6,7 +6,6 @@
     android:background="@drawable/bg"
     tools:context=".FightGameActivity" >
 
-    <!-- Game area -->
     <LinearLayout
         android:id="@+id/game_area"
         android:layout_width="match_parent"
