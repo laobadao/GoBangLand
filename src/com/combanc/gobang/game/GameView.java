@@ -94,10 +94,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         chessPaint.setAntiAlias(true);
         boardPaint.setStrokeWidth(boardWidth);
         boardPaint.setColor(boardColor);
-        numberPaint.setTextAlign(Paint.Align.LEFT);
+//        numberPaint.setTextAlign(Paint.Align.RIGHT);
         numberPaint.setTypeface(Typeface.DEFAULT_BOLD);
         numberPaint.setColor(Color.BLACK);
-        numberPaint.setTextSize(30);
+        numberPaint.setTextSize(50);
 
         clear.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
         setFocusable(true);
