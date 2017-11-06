@@ -182,6 +182,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (mGame == null) {
             return;
         }
+
+        if (mGame.canAddChess(x, y)) {
+            // 添加监听 回调 返回坐标
+            if (mDown != null) {
+                mDown.OnDown(focus.x, mChessboardWidth - 1 - focus.y);
+            }
+        }
         mGame.addChess(x, y);
         drawGame();
     }
@@ -195,11 +202,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             case MotionEvent.ACTION_DOWN:
                 focus.x = (int) (x / mChessSize);
                 focus.y = (int) (y / mChessSize);
-                //  添加监听 回调 返回坐标
-                if (mDown != null) {
-                    mDown.OnDown(focus.x, mChessboardWidth - 1 - focus.y);
-                }
-
                 isDrawFocus = true;
                 drawGame();
                 break;

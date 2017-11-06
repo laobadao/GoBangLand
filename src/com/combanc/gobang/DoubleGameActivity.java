@@ -114,8 +114,6 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
             @Override
             public void OnDown(int x, int y) {
                 // 回调显示横纵坐标
-                Log.d(TAG, "down x = " + x + " y = " + y);
-
                 if (mGame.getActive() == Game.BLACK)
                     addBlackView(x, y);
                 else
