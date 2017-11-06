@@ -158,6 +158,8 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
                     addBlackView(x, y);
                 else
                     addWhiteView(x, y);
+                mXNumTv.setText("x");
+                mYNumTv.setText("y");
             }
         });
     }
@@ -286,11 +288,11 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         } else if (mYNumTv.getText().equals("y")) {
             mYNumTv.setText(Integer.toString(num));
             boolean sucess = mGameView.addNumberChess(Integer.parseInt(mXNumTv.getText().toString()), Integer.parseInt(mYNumTv.getText().toString()));
-            if (!sucess)
-                Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show();
-            mXNumTv.setText("x");
-            mYNumTv.setText("y");
-
+            if (!sucess) {
+                Toast.makeText(this, "该棋子已存在，请重新落子", Toast.LENGTH_LONG).show();
+                mXNumTv.setText("x");
+                mYNumTv.setText("y");
+            }
         }
     }
 }

@@ -269,14 +269,6 @@
                 android:text="@string/restart"
                 android:textSize="18sp"/>
 
-            <Button
-                android:id="@+id/set_bt"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_bg_game"
-                android:text="@string/click"
-                android:textSize="18sp"/>
             <!-- <Button
                  android:id="@+id/rollback"
                  android:layout_width="0dp"
