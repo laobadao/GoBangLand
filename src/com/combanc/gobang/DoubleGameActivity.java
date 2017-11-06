@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.combanc.gobang.game.Game;
@@ -46,18 +47,19 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
 
     private TextView mBlackWin;
     private TextView mWhiteWin;
-
-    private TextView mBlackX;
-    private TextView mBlackY;
-
-    private LinearLayout white_ll;
-    private LinearLayout infoView_white;
+    private ScrollView mBlackSv;
+    private ScrollView mWhiteSv;
+    private LinearLayout mWhiteLl;
+    private LinearLayout mBlackLl;
+    private LinearLayout mInfoViewWhite;
+    private LinearLayout mInfoViewBlack;
     private ImageView mBlackActive;
     private ImageView mWhiteActive;
 
     // Control Button
     private Button restart;
     private Button rollback;
+
 
     private Handler mRefreshHandler = new Handler() {
 
@@ -81,8 +83,6 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
                     break;
             }
         }
-
-        ;
     };
 
     private void initViews() {
@@ -90,13 +90,13 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         mBlackWin = (TextView) findViewById(R.id.black_win);
         mBlackActive = (ImageView) findViewById(R.id.black_active);
         mWhiteWin = (TextView) findViewById(R.id.white_win);
-        mBlackX = (TextView) findViewById(R.id.x_tv);
-        mBlackY = (TextView) findViewById(R.id.y_tv);
         mWhiteActive = (ImageView) findViewById(R.id.white_active);
         restart = (Button) findViewById(R.id.restart);
         rollback = (Button) findViewById(R.id.rollback);
-        white_ll = (LinearLayout) findViewById(R.id.white_ll);
-
+        mWhiteLl = (LinearLayout) findViewById(R.id.white_ll);
+        mBlackLl = (LinearLayout) findViewById(R.id.black_ll);
+        mBlackSv = (ScrollView) findViewById(R.id.black_sv);
+        mWhiteSv = (ScrollView) findViewById(R.id.white_sv);
         restart.setOnClickListener(this);
         rollback.setOnClickListener(this);
     }
@@ -107,29 +107,41 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         mGame = new Game(mRefreshHandler, black, white);
         mGame.setMode(GameConstants.MODE_FIGHT);
         mGameView.setGame(mGame);
+        updateActive(mGame);
+        updateScore(black, white);
         mGameView.setOnDownActionListener(new GameView.OnDownActionListener() {
 
             @Override
             public void OnDown(int x, int y) {
                 // 回调显示横纵坐标
                 Log.d(TAG, "down x = " + x + " y = " + y);
-                mBlackX.setText(Integer.toString(x));
-                mBlackY.setText(Integer.toString(y));
-                addView(x, y);
+
+                if (mGame.getActive() == Game.BLACK)
+                    addBlackView(x, y);
+                else
+                    addWhiteView(x, y);
             }
         });
-        updateActive(mGame);
-        updateScore(black, white);
     }
 
-    public void addView(int x, int y) {
+    public void addWhiteView(int x, int y) {
         LayoutInflater mflater = LayoutInflater.from(this);
-        infoView_white = (LinearLayout) mflater.inflate(R.layout.coordinate_xy, null);
-        TextView xTv = (TextView) infoView_white.findViewById(R.id.x_tv);
-        TextView yTv = (TextView) infoView_white.findViewById(R.id.y_tv);
+        mInfoViewWhite = (LinearLayout) mflater.inflate(R.layout.coordinate_xy, null);
+        TextView xTv = (TextView) mInfoViewWhite.findViewById(R.id.x_tv);
+        TextView yTv = (TextView) mInfoViewWhite.findViewById(R.id.y_tv);
         xTv.setText(Integer.toString(x));
         yTv.setText(Integer.toString(y));
-        white_ll.addView(infoView_white);
+        mWhiteLl.addView(mInfoViewWhite);
+    }
+
+    public void addBlackView(int x, int y) {
+        LayoutInflater mflater = LayoutInflater.from(this);
+        mInfoViewBlack = (LinearLayout) mflater.inflate(R.layout.coordinate_xy, null);
+        TextView xTv = (TextView) mInfoViewBlack.findViewById(R.id.x_tv);
+        TextView yTv = (TextView) mInfoViewBlack.findViewById(R.id.y_tv);
+        xTv.setText(Integer.toString(x));
+        yTv.setText(Integer.toString(y));
+        mBlackLl.addView(mInfoViewBlack);
     }
 
     private void updateActive(Game game) {
@@ -169,6 +181,11 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         b.show();
     }
 
+    public void clearAllView() {
+        mWhiteLl.removeAllViews();
+        mBlackLl.removeAllViews();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -176,6 +193,7 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
                 mGame.reset();
                 updateActive(mGame);
                 updateScore(black, white);
+                clearAllView();
                 mGameView.drawGame();
                 break;
             case R.id.rollback:

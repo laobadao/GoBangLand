@@ -36,7 +36,7 @@ public class Game {
     private Handler mNotify;
     
     public Game(Handler h, Player me, Player challenger){
-        this(h, me, challenger, SCALE_MEDIUM, SCALE_MEDIUM);
+        this(h, me, challenger, SCALE_SMALL, SCALE_SMALL);
     }
     
     public Game(Handler h, Player me, Player challenger, int width, int height){
