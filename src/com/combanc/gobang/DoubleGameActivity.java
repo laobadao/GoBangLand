@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.combanc.gobang.game.Game;
 import com.combanc.gobang.game.GameConstants;
@@ -55,10 +56,24 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
     private LinearLayout mInfoViewBlack;
     private ImageView mBlackActive;
     private ImageView mWhiteActive;
+    private Button mNum0;
+    private Button mNum1;
+    private Button mNum2;
+    private Button mNum3;
+    private Button mNum4;
+    private Button mNum5;
+    private Button mNum6;
+    private Button mNum7;
+    private Button mNum8;
+    private Button mNum9;
+
+    private TextView mXNumTv;
+    private TextView mYNumTv;
+
 
     // Control Button
     private Button restart;
-    private Button rollback;
+//    private Button rollback;
 
 
     private Handler mRefreshHandler = new Handler() {
@@ -92,13 +107,38 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         mWhiteWin = (TextView) findViewById(R.id.white_win);
         mWhiteActive = (ImageView) findViewById(R.id.white_active);
         restart = (Button) findViewById(R.id.restart);
-        rollback = (Button) findViewById(R.id.rollback);
+//        rollback = (Button) findViewById(R.id.rollback);
         mWhiteLl = (LinearLayout) findViewById(R.id.white_ll);
         mBlackLl = (LinearLayout) findViewById(R.id.black_ll);
         mBlackSv = (ScrollView) findViewById(R.id.black_sv);
         mWhiteSv = (ScrollView) findViewById(R.id.white_sv);
+        mNum0 = (Button) findViewById(R.id.num_0);
+        mNum1 = (Button) findViewById(R.id.num_1);
+        mNum2 = (Button) findViewById(R.id.num_2);
+        mNum3 = (Button) findViewById(R.id.num_3);
+        mNum4 = (Button) findViewById(R.id.num_4);
+        mNum5 = (Button) findViewById(R.id.num_5);
+        mNum6 = (Button) findViewById(R.id.num_6);
+        mNum7 = (Button) findViewById(R.id.num_7);
+        mNum8 = (Button) findViewById(R.id.num_8);
+        mNum9 = (Button) findViewById(R.id.num_9);
+
+        mXNumTv = (TextView) findViewById(R.id.x_num_tv);
+        mYNumTv = (TextView) findViewById(R.id.y_num_tv);
+
+        mNum0.setOnClickListener(this);
+        mNum1.setOnClickListener(this);
+        mNum2.setOnClickListener(this);
+        mNum3.setOnClickListener(this);
+        mNum4.setOnClickListener(this);
+        mNum5.setOnClickListener(this);
+        mNum6.setOnClickListener(this);
+        mNum7.setOnClickListener(this);
+        mNum8.setOnClickListener(this);
+        mNum9.setOnClickListener(this);
+
         restart.setOnClickListener(this);
-        rollback.setOnClickListener(this);
+//        rollback.setOnClickListener(this);
     }
 
     private void initGame() {
@@ -166,6 +206,7 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mGame.reset();
+                resetAllView();
                 mGameView.drawGame();
             }
         });
@@ -179,9 +220,12 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         b.show();
     }
 
-    public void clearAllView() {
+    public void resetAllView() {
         mWhiteLl.removeAllViews();
         mBlackLl.removeAllViews();
+        mXNumTv.setText("x");
+        mYNumTv.setText("y");
+
     }
 
     @Override
@@ -191,17 +235,62 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
                 mGame.reset();
                 updateActive(mGame);
                 updateScore(black, white);
-                clearAllView();
+                resetAllView();
                 mGameView.drawGame();
                 break;
-            case R.id.rollback:
+            /*case R.id.rollback:
                 mGame.rollback();
                 updateActive(mGame);
                 mGameView.drawGame();
+                break;*/
+
+            case R.id.num_0:
+                inputNumber(0);
+                break;
+            case R.id.num_1:
+                inputNumber(1);
+                break;
+            case R.id.num_2:
+                inputNumber(2);
+                break;
+            case R.id.num_3:
+                inputNumber(3);
+                break;
+            case R.id.num_4:
+                inputNumber(4);
+                break;
+            case R.id.num_5:
+                inputNumber(5);
+                break;
+            case R.id.num_6:
+                inputNumber(6);
+                break;
+            case R.id.num_7:
+                inputNumber(7);
+                break;
+            case R.id.num_8:
+                inputNumber(8);
+                break;
+            case R.id.num_9:
+                inputNumber(9);
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void inputNumber(int num) {
+        if (mXNumTv.getText().equals("x")) {
+            mXNumTv.setText(Integer.toString(num));
+        } else if (mYNumTv.getText().equals("y")) {
+            mYNumTv.setText(Integer.toString(num));
+            boolean sucess = mGameView.addNumberChess(Integer.parseInt(mXNumTv.getText().toString()), Integer.parseInt(mYNumTv.getText().toString()));
+            if (!sucess)
+                Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show();
+            mXNumTv.setText("x");
+            mYNumTv.setText("y");
+
+        }
     }
 }

@@ -186,12 +186,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (mGame.canAddChess(x, y)) {
             // 添加监听 回调 返回坐标
             if (mDown != null) {
-                mDown.OnDown(focus.x, mChessboardWidth - 1 - focus.y);
+                mDown.OnDown(x, mChessboardWidth - 1 - y);
             }
+            mGame.addChess(x, y);
         }
-        mGame.addChess(x, y);
         drawGame();
     }
+
+    /**
+     * 输入数对增加一个棋子
+     *
+     * @param x 横坐标
+     * @param y 纵坐标
+     */
+    public boolean addNumberChess(int x, int y) {
+        if (mGame == null) {
+            return false;
+        }
+
+        if (mGame.canAddChess(x, mChessboardWidth-1-y)) {
+            // 添加监听 回调 返回坐标
+            if (mDown != null) {
+                mDown.OnDown(x,  y);
+            }
+            mGame.addChess(x, mChessboardWidth-1-y);
+            drawGame();
+            return true;
+        } else return false;
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

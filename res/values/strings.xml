@@ -19,6 +19,7 @@
     <string name="white">White</string>
     <string name="restart">New Game</string>
     <string name="rollback">Rollback</string>
+    <string name="click">Click</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
     <string name="equal">Equal</string>

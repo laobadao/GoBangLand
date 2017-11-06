@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <string name="app_name">五子棋</string>
     <string name="action_settings">设置</string>
     <string name="hello_world">Hello world!</string>
@@ -17,8 +17,9 @@
     <string name="chat_send">发送</string>
     <string name="black">黑方</string>
     <string name="white">白方</string>
-    <string name="restart">新开</string>
+    <string name="restart">重置</string>
     <string name="rollback">悔棋</string>
+    <string name="click">点击</string>
     <string name="about">关于</string>
     <string name="exit">退出</string>
     <string name="equal">求和</string>

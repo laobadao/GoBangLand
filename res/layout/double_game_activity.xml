@@ -197,42 +197,52 @@
                 android:weightSum="10">
 
                 <Button
+                    android:id="@+id/num_0"
                     style="@style/ButtonText"
                     android:text="0"/>
 
                 <Button
+                    android:id="@+id/num_1"
                     style="@style/ButtonText"
                     android:text="1"/>
 
                 <Button
+                    android:id="@+id/num_2"
                     style="@style/ButtonText"
                     android:text="2"/>
 
                 <Button
+                    android:id="@+id/num_3"
                     style="@style/ButtonText"
                     android:text="3"/>
 
                 <Button
+                    android:id="@+id/num_4"
                     style="@style/ButtonText"
                     android:text="4"/>
 
                 <Button
+                    android:id="@+id/num_5"
                     style="@style/ButtonText"
                     android:text="5"/>
 
                 <Button
+                    android:id="@+id/num_6"
                     style="@style/ButtonText"
                     android:text="6"/>
 
                 <Button
+                    android:id="@+id/num_7"
                     style="@style/ButtonText"
                     android:text="7"/>
 
                 <Button
+                    android:id="@+id/num_8"
                     style="@style/ButtonText"
                     android:text="8"/>
 
                 <Button
+                    android:id="@+id/num_9"
                     style="@style/ButtonText"
                     android:text="9"/>
 
@@ -260,13 +270,71 @@
                 android:textSize="18sp"/>
 
             <Button
-                android:id="@+id/rollback"
+                android:id="@+id/set_bt"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_bg_game"
-                android:text="@string/rollback"
+                android:text="@string/click"
                 android:textSize="18sp"/>
+            <!-- <Button
+                 android:id="@+id/rollback"
+                 android:layout_width="0dp"
+                 android:layout_height="40dp"
+                 android:layout_weight="1"
+                 android:background="@drawable/btn_bg_game"
+                 android:text="@string/rollback"
+                 android:textSize="18sp"/>-->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="("
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:id="@+id/x_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="x"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=","
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:id="@+id/y_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="y"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=")"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
