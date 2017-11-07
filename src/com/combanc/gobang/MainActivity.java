@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Button newGame = (Button) findViewById(R.id.new_game);
         Button fight = (Button) findViewById(R.id.fight);
-        Button netFight = (Button) findViewById(R.id.conn_fight);
+//        Button netFight = (Button) findViewById(R.id.conn_fight);
         newGame.setOnClickListener(new OnClickListener() {
             
             @Override
@@ -35,13 +35,13 @@ public class MainActivity extends Activity {
             }
         });
         
-        netFight.setOnClickListener(new OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ConnectionActivity.class));
-            }
-        });
+//        netFight.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, ConnectionActivity.class));
+//            }
+//        });
     }
 
 }

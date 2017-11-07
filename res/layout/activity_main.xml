@@ -30,7 +30,7 @@
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
 
-        <Button
+        <!--<Button
             android:id="@+id/conn_fight"
             android:layout_width="0dp"
             android:layout_height="80dp"
@@ -39,7 +39,7 @@
             android:background="@drawable/btn_bg"
             android:text="@string/fight_connection"
             android:textColor="@android:color/white"
-            android:textSize="22sp"/>
+            android:textSize="22sp"/>-->
 
     </LinearLayout>
 </RelativeLayout>
