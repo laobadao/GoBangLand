@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -160,6 +161,21 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
                     addWhiteView(x, y);
                 mXNumTv.setText("x");
                 mYNumTv.setText("y");
+
+            }
+        });
+    }
+
+
+    public void Scroll(final ScrollView scrollView) {
+        scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                scrollView.post(new Runnable() {
+                    public void run() {
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
             }
         });
     }
@@ -172,6 +188,7 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         xTv.setText(Integer.toString(x));
         yTv.setText(Integer.toString(y));
         mWhiteLl.addView(mInfoViewWhite);
+        Scroll(mBlackSv);
     }
 
     public void addBlackView(int x, int y) {
@@ -182,6 +199,7 @@ public class DoubleGameActivity extends Activity implements View.OnClickListener
         xTv.setText(Integer.toString(x));
         yTv.setText(Integer.toString(y));
         mBlackLl.addView(mInfoViewBlack);
+        Scroll(mWhiteSv);
     }
 
     private void updateActive(Game game) {
