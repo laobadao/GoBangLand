@@ -97,7 +97,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 //        numberPaint.setTextAlign(Paint.Align.RIGHT);
         numberPaint.setTypeface(Typeface.DEFAULT_BOLD);
         numberPaint.setColor(Color.BLACK);
-        numberPaint.setTextSize(50);
+        numberPaint.setTextSize(40);
 
         clear.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
         setFocusable(true);
@@ -325,12 +325,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void drawNumber(Canvas canvas) {
         // 画纵轴坐标
         for (int i = 0; i < mChessboardWidth; i++) {
-            canvas.drawText(Integer.toString(i), left, bottom - (i * mChessSize) - mChessSize / 2 - top, numberPaint);
+            canvas.drawText(Integer.toString(i), left+10, bottom - (i * mChessSize) - mChessSize / 2 - top+left, numberPaint);
         }
 
         // 画横轴坐标
         for (int i = 1; i < mChessboardWidth; i++) {
-            canvas.drawText(Integer.toString(i), left + (i * mChessSize), bottom - mChessSize / 2 /*- top*/, numberPaint);
+            canvas.drawText(Integer.toString(i), left + (i * mChessSize)+20, bottom - 8/*- mChessSize /4*/, numberPaint);
         }
 
 
@@ -343,9 +343,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             for (int y = 0; y < chessMap[0].length; ++y) {
                 int type = chessMap[x][y];
                 if (type == Game.BLACK) {
-                    canvas.drawBitmap(mBlack, x * mChessSize, y * mChessSize, chessPaint);
+                    canvas.drawBitmap(mBlack, x * mChessSize+left, y * mChessSize+left, chessPaint);
                 } else if (type == Game.WHITE) {
-                    canvas.drawBitmap(mWhite, x * mChessSize, y * mChessSize, chessPaint);
+                    canvas.drawBitmap(mWhite, x * mChessSize+left, y * mChessSize+left, chessPaint);
                 }
             }
         }
@@ -354,9 +354,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             Coordinate last = mGame.getActions().getLast();
             int lastType = chessMap[last.x][last.y];
             if (lastType == Game.BLACK) {
-                canvas.drawBitmap(mBlackNew, last.x * mChessSize, last.y * mChessSize, chessPaint);
+                canvas.drawBitmap(mBlackNew, last.x * mChessSize+left, last.y * mChessSize+left, chessPaint);
             } else if (lastType == Game.WHITE) {
-                canvas.drawBitmap(mWhiteNew, last.x * mChessSize, last.y * mChessSize, chessPaint);
+                canvas.drawBitmap(mWhiteNew, last.x * mChessSize+left, last.y * mChessSize+left, chessPaint);
             }
         }
     }
@@ -369,7 +369,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void drawFocus(Canvas canvas) {
         if (isDrawFocus) {
 
-            canvas.drawBitmap(bFocus, focus.x * mChessSize, focus.y * mChessSize, chessPaint);
+            canvas.drawBitmap(bFocus, focus.x * mChessSize+left, focus.y * mChessSize+left, chessPaint);
         }
     }
 
